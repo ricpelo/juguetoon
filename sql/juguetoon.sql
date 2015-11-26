@@ -9,7 +9,6 @@ create table usuarios (
     admin       bool            not null default false
 );
 
-
 drop table if exists articulos cascade;
 
 create table articulos (
