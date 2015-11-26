@@ -11,6 +11,8 @@ insert into socios(numero, nick, password, admin)
 values  (1000, 'juan', md5('juan'), true),
         (1001, 'maria', md5('maria'), false);
 
+drop table if exists articulos cascade;
+
 create table articulos (
     id bigserial constraint constraint pk_articulos primary key,
     codigo char(13) not null constraint uq_articulos_codigo unique,
@@ -19,3 +21,6 @@ create table articulos (
     precio numeric(6,2) not null
 );
 
+insert into articulos(codigo, nombre, descripcion, precio)
+values  (1000, 'Barco Pirata Playmobil', 'Piratas en los clics', 40.00),
+        (1001, 'PlaStation 4', 'Consola de Sony', 350.00);
