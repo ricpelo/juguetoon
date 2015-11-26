@@ -10,4 +10,4 @@ create table usuarios (
 
 insert into usuarios(numero, nick, password, admin)
 values  (1, 'juan', md5('juan'), true),
-        (2, 'maria', md5('maria'), false);
+        (1, 'maria', md5('maria'), false);
