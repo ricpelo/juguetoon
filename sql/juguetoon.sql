@@ -1,15 +1,14 @@
 
+drop table if exists usuarios cascade;
+
 create table usuarios (
-    id          bigserial       constraint pk_socios primary key,
-    numero      numeric(13)     not null constraint uq_socios_numero unique, 
+    id          bigserial       constraint pk_usuarios primary key,
+    numero      numeric(13)     not null constraint uq_usuarios_numero unique, 
     nick        varchar(100)    not null,
     password    char(32),
-    admin       bool           not null default false
+    admin       bool            not null default false
 );
 
-insert into socios(numero, nick, password, admin)
-values  (1000, 'juan', md5('juan'), true),
-        (1001, 'maria', md5('maria'), false);
 
 drop table if exists articulos cascade;
 
@@ -24,3 +23,8 @@ create table articulos (
 insert into articulos(codigo, nombre, descripcion, precio)
 values  (1000, 'Barco Pirata Playmobil', 'Piratas en los clics', 40.00),
         (1001, 'PlaStation 4', 'Consola de Sony', 350.00);
+
+insert into usuarios(numero, nick, password, admin)
+values  (1, 'juan', md5('juan'), true),
+        (2, 'maria', md5('maria'), false);
+
