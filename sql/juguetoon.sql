@@ -28,3 +28,9 @@ insert into usuarios(numero, nick, password, admin)
 values  (1, 'juan', md5('juan'), true),
         (2, 'maria', md5('maria'), false);
 
+drop view if exists v_productos;
+
+create view v_productos as
+select id, codigo, nombre, descripcion, precio
+from articulos
+where borrado = false;
