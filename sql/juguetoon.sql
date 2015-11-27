@@ -16,7 +16,8 @@ create table articulos (
     codigo char(13) not null constraint uq_articulos_codigo unique,
     nombre varchar(50),
     descripcion varchar(150),
-    precio numeric(6,2) not null
+    precio numeric(6,2) not null,
+    borrado bool not null default false
 );
 
 insert into articulos(codigo, nombre, descripcion, precio)
@@ -27,3 +28,9 @@ insert into usuarios(numero, nick, password, admin)
 values  (1, 'juan', md5('juan'), true),
         (2, 'maria', md5('maria'), false);
 
+drop view if exists v_productos;
+
+create view v_productos as
+select id, codigo, nombre, decripcion, precio
+from articulos
+where borrado = false;
