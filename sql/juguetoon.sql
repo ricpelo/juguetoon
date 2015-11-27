@@ -17,8 +17,8 @@ create table articulos (
     nombre varchar(50),
     descripcion varchar(150),
     precio numeric(6,2) not null,
-    borrado bool not null default false;
-    existencias int
+    borrado bool not null default false,
+    existencias int default 0
 );
 
 insert into articulos(codigo, nombre, descripcion, precio,existencias)
