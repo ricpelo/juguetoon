@@ -16,7 +16,7 @@
         
         $con = conectar();
         
-        $cols = array('id', 'numero', 'dni', 'nombre', 'direccion', 'codpostal', 'poblacion_id', 'telefono');
+        $cols = array('id', 'numero', 'nick', 'password', 'admin');
         $vals = array();
         
         for($i = 0; $i < count($cols); $i++):
@@ -28,7 +28,7 @@
         
         if(isset($_GET['id'])):
             $id = trim($_GET['id']);
-            $res = pg_query_params("select * from socios where id = $1", array($id));
+            $res = pg_query_params("select id, numero, nick, admin from usuarios where id = $1", array($id));
             $fila = pg_fetch_assoc($res, 0);
             extract($fila);
             
@@ -51,24 +51,20 @@
             $error = array();
             
             try {
-                comprobar_nombre($nombre, $error);
                 comprobar_numero($numero, $error);
-                comprobar_dni($dni, $error);
-                comprobar_direccion($direccion, $error);
-                comprobar_poblacion_id($poblacion_id, $error);
-                comprobar_codpostal($codpostal, $error);
-                comprobar_telefono($telefono, $error);
+                comprobar_nick($nick, $error);
+                comprobar_password($password, $error);
                 comprobar_errores($error);
                 
                 $res = pg_query($con, "begin");
-                bloquear_tabla_socios($con);
-                comprobar_existe_socio($error, $numero, $id);
-                
-                $res = modificar_socio(compact($cols));
+                bloquear_tabla_usuarios($con);
+                comprobar_existe_usuario($error, $numero, $id);
+                $password = md5($password);
+                $res = modificar_usuario(compact($cols));
                 
                 comprobar_modificacion($res, $error);
                 $res = pg_query($con, "commit"); ?>
-                <h3>Se ha modificado correctamente el socio</h3><?php
+                <h3>Se ha modificado correctamente el usuario</h3><?php
                 $exito = true;
             } catch(Exception $e) {
                 foreach($error as $err): ?>

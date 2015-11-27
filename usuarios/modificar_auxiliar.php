@@ -1,5 +1,5 @@
 <?php    
-    function modificar_socio($valores) {
+    function modificar_usuario($valores) {
         $id = $valores['id'];
         unset($valores['id']);
         $pqp = array_values($valores);
@@ -14,18 +14,18 @@
         
         $asignaciones = implode(",", $asignaciones);
         
-        $res = pg_query_params("update socios
+        $res = pg_query_params("update usuarios
                                set $asignaciones
                                where id = \$$k", $pqp);
         return $res;
     }
     
-    function comprobar_existe_socio(&$error, $numero, $id) {
-        $res = pg_query_params("select id from socios where numero = $1 and id != $2", array($numero, $id));
+    function comprobar_existe_usuario(&$error, $numero, $id) {
+        $res = pg_query_params("select id from usuarios where numero = $1 and id != $2", array($numero, $id));
         
         if(pg_num_rows($res) > 0):
             $res = pg_query("rollback");
-            $error[] = "ya existe un socio con ese número.";
+            $error[] = "ya existe un usuario con ese número.";
             throw new Exception();
         endif;
     }
@@ -40,36 +40,26 @@
     }
     
     function formulario_modificar($variables) {
-        extract($variables);
-        
-        // Al pg_query() no le hace falta pasarle la conexion, ya que, el mismo coje la ultima abierta por defecto
-        $res = pg_query("select id, nombre from poblaciones order by nombre");
+        extract($variables); 
+        $password = (isset($password)) ? $password : "";
         ?>
         
         <form action="modificar.php" method="post">
             <fieldset style="width: 3em;">
-                <legend>Datos del Socio</legend>
+                <legend>Datos del Usuario</legend>
                 <input type="hidden" name="id" value="<?= $id ?>" />
                 <label for="numero">Número *</label> <br />
                 <input type="text" name="numero" value="<?= $numero ?>" /> <br />
-                <label for="dni">DNI</label> <br />
-                <input type="text" name="dni" value="<?= $dni ?>"/> <br />
-                <label for="nombre">Nombre *</label> <br />
-                <input type="text" name="nombre" value="<?= $nombre ?>"/> <br />
-                <label for="direccion">Dirección</label> <br />
-                <input type="text" name="direccion" value="<?= $direccion ?>" /> <br />
-                <label for="codpostal">Código Postal </label> <br />
-                <input type="text" name="codpostal" value="<?= $codpostal ?>"/> <br /> <br />
+                <label for="nick">Nick *</label> <br />
+                <input type="text" name="nick" value="<?= $nick ?>"/> <br />
+                <label for="password">Password *</label> <br />
+                <input type="text" name="password" value="<?= $password ?>"/> <br />
                 
-                <label for="poblacion_id">Población *</label>
-                <select name="poblacion_id"><?php
-                    for($i = 0; $i < pg_num_rows($res); $i++):
-                        extract(pg_fetch_assoc($res, $i));?>
-                            <option value="<?= $id ?>" <?= selected($id, $poblacion_id) ?>><?= $nombre ?></option><?php
-                    endfor;?>
+                <label for="admin">Admin</label>
+                <select name="admin">
+                    <option value="false">No</option>
+                    <option value="true">Sí</option>
                 </select>
-                <label for="Telefono">Telefono</label><br />
-                <input type="text" name="telefono" value="<?= $telefono ?>" /><br />
                 <br />
                 <br />
                 <input type="submit" value="Modificar" />

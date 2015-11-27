@@ -10,6 +10,7 @@
     <body><?php
         require '../comunes/auxiliar.php';
         require 'insertar_auxiliar.php';
+        require 'auxiliar.php';
 
         comprobar_es_socio_admi();
         
@@ -44,14 +45,14 @@
                 comprobar_numero($numero, $error);
                 comprobar_nick($nick, $error);
                 comprobar_password($password, $error);
-                comprobar_admin($admin, $error);
+                //comprobar_admin($admin, $error);
                 comprobar_errores($error);
                 
                 $res = pg_query("begin");
                 bloquear_tabla_usuarios($con);                
-                comprobar_existe_usuarios($error, $numero);
+                comprobar_existe_usuario($error, $numero);
                 
-                $res = insertar_socio($con, compact($cols));
+                $res = insertar_usuario(compact($cols));
                 
                 comprobar_insercion($con, $res, $error);
                 $res = pg_query($con, "commit"); ?>
