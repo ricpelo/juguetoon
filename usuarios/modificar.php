@@ -52,7 +52,7 @@
             
             try {
                 comprobar_numero($numero, $error);
-                comprobar_nick($nick, $error);
+                comprobar_nick_modificar($error, $nick, $id);
                 comprobar_password($password, $error);
                 comprobar_errores($error);
                 

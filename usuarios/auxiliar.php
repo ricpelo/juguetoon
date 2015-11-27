@@ -15,7 +15,7 @@
     
     function comprobar_nick($nick, &$error) {
         $res = pg_query_params("select * from usuarios where nick = $1", array($nick));
-
+        
         if($nick == ""):
             $error[] = "el nombre es obligatorio.";
         elseif(pg_num_rows($res) > 0):

@@ -13,7 +13,6 @@
         $k += 2;
         
         $asignaciones = implode(",", $asignaciones);
-        
         $res = pg_query_params("update usuarios
                                set $asignaciones
                                where id = \$$k", $pqp);
@@ -29,7 +28,14 @@
             throw new Exception();
         endif;
     }
-    
+
+    function comprobar_nick_modificar(&$error, $nick, $id) {
+        $res = pg_query_params("select * from usuarios where nick = $1 and id != $2", array($nick, $id));
+
+        if(pg_num_rows($res) > 0):
+            $error[] = "nick cogido. Escoja otro.";
+        endif;
+    }
     function comprobar_modificacion($res, &$error) {
         if(!$res && pg_affected_rows($res) != 1):
             
@@ -42,7 +48,7 @@
     function formulario_modificar($variables) {
         extract($variables); 
         $password = (isset($password)) ? $password : "";
-        ?>
+        $admin = $admin == "t"; ?>
         
         <form action="modificar.php" method="post">
             <fieldset style="width: 3em;">
@@ -57,8 +63,8 @@
                 
                 <label for="admin">Admin</label>
                 <select name="admin">
-                    <option value="false">No</option>
-                    <option value="true">Sí</option>
+                <option value="<?= (int) $admin ?>"><?= ($admin) ? "Sí" : "No" ?></option>
+                <option value="<?= (int) !$admin ?>"><?= (!$admin) ? "Sí" : "No" ?></option>
                 </select>
                 <br />
                 <br />
