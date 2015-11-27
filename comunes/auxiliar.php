@@ -97,6 +97,7 @@
                     <th colspan="2" >Operaciones</th>
                 </thead>
                 <tbody><?php
+                    
                     for($i = 0; $i < pg_num_rows($res); $i++):
                         $fila = pg_fetch_assoc($res, $i);?>
                         <tr><?php
