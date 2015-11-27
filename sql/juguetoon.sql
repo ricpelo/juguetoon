@@ -1,4 +1,4 @@
-
+﻿
 drop table if exists usuarios cascade;
 
 create table usuarios (
@@ -12,7 +12,7 @@ create table usuarios (
 drop table if exists articulos cascade;
 
 create table articulos (
-    id bigserial constraint constraint pk_articulos primary key,
+    id bigserial constraint pk_articulos primary key,
     codigo char(13) not null constraint uq_articulos_codigo unique,
     nombre varchar(50),
     descripcion varchar(150),
