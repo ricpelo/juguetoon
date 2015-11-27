@@ -20,9 +20,9 @@ create table articulos (
     existencias int
 );
 
-insert into articulos(codigo, nombre, descripcion, precio)
-values  (1000, 'Barco Pirata Playmobil', 'Piratas en los clics', 40.00),
-        (1001, 'PlaStation 4', 'Consola de Sony', 350.00);
+insert into articulos(codigo, nombre, descripcion, precio,existencias)
+values  (1000, 'Barco Pirata Playmobil', 'Piratas en los clics', 40.00,10),
+        (1001, 'PlaStation 4', 'Consola de Sony', 350.00,30);
 
 insert into usuarios(numero, nick, password, admin)
 values  (1, 'juan', md5('juan'), true),
