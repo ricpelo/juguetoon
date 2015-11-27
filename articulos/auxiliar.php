@@ -2,22 +2,22 @@
 
 define('PATRON', '/^(-?\d*)(,\d{2})?(\s*€)?$/');
 
-function comprobar_nombre($titulo, &$error)
+function comprobar_nombre($nombre, &$error)
 {
-    if (strlen($titulo) > 50) {
-        $error[] = "el título no puede tener más de 50 caracteres";
+    if (strlen($nombre) > 50) {
+        $error[] = "el nombre no puede tener más de 50 caracteres";
     }
 }
 
 function comprobar_precio(&$precio, &$error)
 {
-    if ($precio_alq != "") {
+    if ($precio != "") {
         $c = array();
-        preg_match(PATRON, $precio_alq, $c);
+        preg_match(PATRON, $precio, $c);
         if (empty($c)) {
             $error[] = "el precio no es correcto";
         } else {
-            $precio = normalizar_precio($precio_alq);
+            $precio = normalizar_precio($precio);
             $patron = '/^(-?\d*),(\d*)\s€$/';
             $c = array();
             preg_match($patron, $precio, $c);
@@ -26,16 +26,9 @@ function comprobar_precio(&$precio, &$error)
             if ($valor < 0 || $valor >= 10000) {
                 $error[] = "el precio debe estar entre 0 y 9999,99 €";
             } else {
-                $precio_alq = $precio;
+                $precio;
             }
         }
-    }
-}
-
-function comprobar_pelicula_id($pelicula_id, &$error)
-{
-    if ($pelicula_id == "") {
-        $error[] = "la película es obligatoria";
     }
 }
 
@@ -50,6 +43,13 @@ function comprobar_codigo($codigo, &$error)
         if (strlen($codigo) > 13) {
             $error[] = "el código no puede tener más de 13 dígitos";
         }
+    }
+}
+
+function comprobar_operacion($res, &$error) {
+    if (pg_affected_rows($res) == 0) {
+        $error[] = "no se ha podido modificar el artículo.";
+        throw new Exception();
     }
 }
 
@@ -101,30 +101,4 @@ function normalizar_precio($precio)
     return $precio;
 }
 
-function normalizar_fecha($fecha)
-{
-    $patron = '/^(\d{1,2})-(\d{1,2})-(\d{2}(\d{2})?)$/';
-
-    $c = array();
-    preg_match($patron, $fecha, $c);
-
-    if (empty($c)) {
-        return $fecha;
-    }
-
-    if (strlen($c[1]) == 1) {
-        $fecha = preg_replace($patron, '0\1-\2-\3', $fecha);
-    }
-
-    if (strlen($c[2]) == 1) {
-        $fecha = preg_replace($patron, '\1-0\2-\3', $fecha);
-    }
-
-    if (strlen($c[3]) == 2) {
-        $cent = (int) ($c[3]) >= 70 ? "19" : "20";
-        $fecha = preg_replace($patron, "\\1-\\2-$cent\\3", $fecha);
-    }
-
-    return $fecha;
-}
 
