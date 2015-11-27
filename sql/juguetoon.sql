@@ -26,7 +26,7 @@ drop table if exists pedidos cascade;
 
 create table pedidos(
 	id 		bigserial 	constraint pk_pedidos primary key,
-	numero		numeric(8,0)	not null, constraint_uq_pedidos_codigo unique,
+	numero		numeric(8,0)	not null constraint uq_pedidos_codigo unique,
 	fecha 		date		not null default CURRENT_DATE
 );
 
