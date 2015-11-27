@@ -1,4 +1,5 @@
-﻿
+﻿-- B.D TIENDA JUGUETES(JUGUETOON) --
+
 drop table if exists usuarios cascade;
 
 create table usuarios (
@@ -12,18 +13,28 @@ create table usuarios (
 drop table if exists articulos cascade;
 
 create table articulos (
-    id bigserial constraint pk_articulos primary key,
-    codigo char(13) not null constraint uq_articulos_codigo unique,
-    nombre varchar(50),
+    id 		bigserial 	constraint pk_articulos primary key,
+    codigo 	char(13) 	not null constraint uq_articulos_codigo unique,
+    nombre 	varchar(50),
     descripcion varchar(150),
-    precio numeric(6,2) not null,
-    borrado bool not null default false,
-    existencias int default 0
+    precio 	numeric(6,2) 	not null,
+    borrado 	bool 		not null default false,
+    existencias int 		default 0
 );
+
+drop table if exists pedidos cascade; 
+
+create table pedidos(
+	id 		bigserial 	constraint pk_pedidos primary key,
+	numero		numeric(8,0)	not null, constraint_uq_pedidos_codigo unique,
+	fecha 		date		not null default CURRENT_DATE
+);
+
 
 insert into articulos(codigo, nombre, descripcion, precio,existencias)
 values  (1000, 'Barco Pirata Playmobil', 'Piratas en los clics', 40.00,10),
         (1001, 'PlaStation 4', 'Consola de Sony', 350.00,30);
+
 
 insert into usuarios(numero, nick, password, admin)
 values  (1, 'juan', md5('juan'), true),
