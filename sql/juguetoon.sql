@@ -43,6 +43,6 @@ values  (1, 'juan', md5('juan'), true),
 drop view if exists v_articulos;
 
 create view v_articulos as
-select id, codigo, nombre, descripcion, precio
+select id, codigo, nombre, descripcion, precio, existencias
 from articulos
 where borrado = false;

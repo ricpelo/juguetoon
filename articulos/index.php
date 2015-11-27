@@ -5,7 +5,7 @@
     </head>
     <body>
         <?php
-        //require 'auxiliar.php';
+        require 'auxiliar.php';
         require '../comunes/auxiliar.php';
 
         $columnas = array(
@@ -39,6 +39,6 @@
             )
         );
 
-        index($columnas, 'v_productos'); ?>
+        index($columnas, 'v_articulos'); ?>
     </body>
 </html>
