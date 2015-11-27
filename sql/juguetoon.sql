@@ -16,7 +16,8 @@ create table articulos (
     codigo char(13) not null constraint uq_articulos_codigo unique,
     nombre varchar(50),
     descripcion varchar(150),
-    precio numeric(6,2) not null
+    precio numeric(6,2) not null,
+    existencias int
 );
 
 insert into articulos(codigo, nombre, descripcion, precio)
