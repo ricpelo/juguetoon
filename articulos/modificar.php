@@ -13,7 +13,7 @@
         // comprobar_admin_conectado();
         conectar();
 
-        $cols = array('id', 'codigo', 'nombre', 'descripcion', 'precio', 'existencias');
+        $cols = array('id', 'codigo', 'nombre', 'descripcion', 'precio', 'precio_format', 'existencias');
 
         $vals = array();
         for ($i = 0; $i < count($cols); $i++) {

@@ -150,7 +150,7 @@
     }
     
     function icono_sentido($sentido) {
-        return $sentido == "asc" ? "&uarr;" : "&darr;";
+        return $sentido == "asc" ? "▲" : "▼";
     }
     
     function conectar() {

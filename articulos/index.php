@@ -13,29 +13,30 @@
                 'bonito'   => 'Código',
                 'criterio' => 'codigo',
                 'exacto'   => TRUE,
-                'mostrar' => TRUE
+                'mostrar'  => TRUE
             ),
             'nombre' => array(
                 'bonito'   => 'Nombre',
                 'criterio' => 'nombre',
-                'mostrar' => TRUE
+                'mostrar'  => TRUE
             ),
             'descripcion' => array(
                 'bonito'   => 'Descripcion',
                 'criterio' => 'descripcion',
-                'mostrar' => TRUE
+                'mostrar'  => TRUE
             ),
-            'precio' => array(
-                'bonito'   => 'Precio',
-                'criterio' => 'precio',
-                'exacto'   => TRUE,
-                'mostrar' => TRUE
+            'precio_format' => array(
+                'bonito'    => 'Precio',
+                'criterio'  => 'precio_format',
+                'exacto'    => TRUE,
+                'mostrar'   => TRUE,
+                'align'     => 'right'
             ),
             'existencias' => array(
                 'bonito'   => 'Existencias',
                 'criterio' => 'existencias',
                 'exacto'   => TRUE,
-                'mostrar' => TRUE
+                'mostrar'  => TRUE
             )
         );
 

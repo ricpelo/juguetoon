@@ -59,12 +59,13 @@ function formulario_modificar($variables)
 
     <form action="modificar.php" method="post">
         <input type="hidden" name="id" value="<?= $id ?>" />
+        <input type="hidden" name="precio_format" />
+        <label for="codigo">Código *:</label>
+        <input type="text" name="codigo" value="<?= $codigo ?>" /><br/>
         <label for="nombre">Nombre *:</label>
         <input type="text" name="nombre" value="<?= $nombre ?>" /><br/>
         <label for="precio">Precio *:</label>
-        <input type="text" name="precio" value="<?= $precio ?>" /><br/>
-        <label for="codigo">Código *:</label>
-        <input type="text" name="codigo" value="<?= $codigo ?>" /><br/>
+        <input type="text" name="precio" value="<?= $precio_format ?>" /><br/>
         <label for="existencias">Existencias: </label>
         <input type="text" name="existencias" value="<?= $existencias ?>" /><br/>
         <label for="descripcion">Descripción:</label><br/>
