@@ -11,9 +11,9 @@
 			<img src="imagenes/juguetoon.jpg" style="margin:auto;">
 		</div>
 		<div align="center">
-			<a href="usuarios"><button>Gestión de Usuarios</button></a>
-			<a href="articulos"><button>Gestión de Artículos</button></a>
-			<a href="pedidos"><button>Gestión de Pedidos</button></a>
+			<a href="usuarios" style="padding:30px"><button>Gestión de Usuarios</button></a>
+			<a href="articulos" style="padding:30px"><button>Gestión de Artículos</button></a>
+			<a href="pedidos" style="padding:30px"><button>Gestión de Pedidos</button></a>
 		</div>
 	</body>
 </html>
