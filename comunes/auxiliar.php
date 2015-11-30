@@ -74,7 +74,7 @@
         return array($where, $pqp);
     }
 
-    function generar_resultado($params, $bol) {
+    function generar_resultado($params, $bol = false) {
         
         extract($params);
         
@@ -268,7 +268,7 @@
         return compact('criterio', 'columna', 'orden', 'sentido');
     }
     
-    function index($columnas, $vista, $bol) {
+    function index($columnas, $vista, $bol = false) {
                 
         extract(recoger_parametros($columnas));
         
@@ -285,7 +285,6 @@
                                       order by $orden $sentido", $pqp);
  
         $params['res'] = $res;
-        
         generar_resultado($params, $bol); ?>
         <a href="insertar.php"><input type="button" value="Insertar" /></a><?php
     }
