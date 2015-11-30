@@ -74,7 +74,7 @@
         return array($where, $pqp);
     }
 
-    function generar_resultado($params) {
+    function generar_resultado($params, $bol) {
         
         extract($params);
         
@@ -111,7 +111,18 @@
                                     } ?>
                                     <td <?= alinear($v) ?>><?= $valor ?></td><?php
                                 endif;
-                            endforeach;?>
+                            endforeach;
+                            if ($bol){?>
+                            <td colspan="2">
+                                <form action="index.php" method="get">
+                                    <input type="hidden" name="codigo" value="<?= trim($fila['codigo']) ?>" />
+                                    <label for="cantidad">Cantidad</label>
+                                    <input type="number" name="cantidad" value="0" min="0" max="<?= $fila['existencias']?>"/> 
+                                    <input type="submit" value="Añadir al carrito" />
+                                </form>
+                            </td>
+                            
+                            <?php } else {?>
                             <td>
                                 <form action="modificar.php" method="get">
                                     <input type="hidden" name="id" value="<?= $fila['id'] ?>" />
@@ -125,6 +136,7 @@
                                 </form>
                             </td>
                         </tr><?php
+                            }
                     endfor; ?>
                 </tbody>
             </table><?php
@@ -256,7 +268,7 @@
         return compact('criterio', 'columna', 'orden', 'sentido');
     }
     
-    function index($columnas, $vista) {
+    function index($columnas, $vista, $bol) {
                 
         extract(recoger_parametros($columnas));
         
@@ -274,6 +286,6 @@
  
         $params['res'] = $res;
         
-        generar_resultado($params); ?>
+        generar_resultado($params, $bol); ?>
         <a href="insertar.php"><input type="button" value="Insertar" /></a><?php
     }

@@ -56,6 +56,6 @@
             )
         );
 
-        index1($columnas, 'v_articulos'); ?>
+        index($columnas, 'v_articulos', true); ?>
     </body>
 </html>
