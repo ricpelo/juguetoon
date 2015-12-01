@@ -5,10 +5,13 @@
             $id = $_SESSION['usuario_id'];
             $res = pg_query_params("select * from usuarios where id = $1", array($id));
             $usuario = pg_fetch_assoc($res, 0); ?>
-            <p style="text-align: rigth;">Usuario: <?= $usuario['nick'] ?></p>
-            <a href="logout.php">
-                <button>Salir</button>
-            </a>
+            <p style="text-align: right;">Usuario: <?= $usuario['nick'] ?></p>
+            <p style="text-align: right;">Número: <?= $usuario['numero'] ?></p>
+            <p style="text-align: right;">
+                <a href="../comunes/logout.php">
+                    <button>Salir</button>
+                </a>
+            </p>
             <hr /><?php
         }
     }

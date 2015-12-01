@@ -29,7 +29,7 @@
                 $_SESSION['usuario_id'] = $id;
                 $_SESSION['usuario_numero'] = $numero;
                 
-                header("Location: index.php");
+                header("Location: ../index.php");
                 return;
             else: ?>
                 <h3>Error: usuario incorrecto.</h3><?php
