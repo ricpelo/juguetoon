@@ -26,7 +26,8 @@ function modificar_articulo($valores)
 
 function formulario_modificar($variables)
 {
-    extract($variables); ?>
+    extract($variables);
+    $codigo = trim($codigo); ?>
 
     <form action="modificar.php" method="post">
         <input type="hidden" name="id" value="<?= $id ?>" />
