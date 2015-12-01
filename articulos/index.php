@@ -42,7 +42,9 @@
                 'align'     => 'center'
             )
         );
-
+        
+        mostrar_dato_inicial();
+        comprobar_socio_admin();
         index($columnas, 'v_articulos'); ?>
     </body>
 </html>

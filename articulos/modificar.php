@@ -9,8 +9,8 @@
         require 'auxiliar.php';
         require 'modificar_auxiliar.php';
         require '../comunes/auxiliar.php';
-        // Comentado a la espera de compañeros. "FUNCIONAL"
-        // comprobar_admin_conectado();
+        
+        comprobar_socio_admin();
         conectar();
 
         $cols = array('id', 'codigo', 'nombre', 'descripcion', 'precio', 'precio_format', 'existencias');
