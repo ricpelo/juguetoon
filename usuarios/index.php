@@ -9,8 +9,8 @@
     </head>
     <body><?php
         require '../comunes/auxiliar.php';
-        
-        comprobar_es_socio_admi();
+        mostrar_dato_inicial();
+        comprobar_es_socio_admin();
         
         $columnas = array(
             'numero'           => array(
@@ -26,6 +26,5 @@
             )
         );
         index($columnas, 'usuarios');  ?> 
-        <a href="insertar.php"><input type="button" value="Insertar" /></a>
     </body>
 </html>
