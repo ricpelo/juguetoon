@@ -102,3 +102,35 @@ function normalizar_precio($precio)
 }
 
 
+function comprobar_nombre_obligatorio($nombre, &$error)
+{
+    if ($nombre == "") {
+        $error[] = "el nombre es obligatorio";
+    }
+}
+
+function comprobar_precio_obligatorio($precio, &$error)
+{
+    if ($precio == "") {
+        $error[] = "el precio es obligatorio";
+    }
+}
+
+function comprobar_descripcion($descripcion, &$error) {
+    if (strlen($descripcion) > 150) {
+        $error[] = "la descripción no puede tener más de 150 caracteres";
+    }
+}
+
+function comprobar_existe_articulo($codigo, $id, &$error)
+{
+    $res = pg_query_params("select id
+                              from articulos
+                             where codigo = $1 and
+                                   id != $2", array($codigo, $id));
+    if (pg_num_rows($res) > 0) {
+        $res = pg_query("rollback");
+        $error[] = "ya existe un articulo con ese código";
+        throw new Exception();
+    }
+}

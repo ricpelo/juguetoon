@@ -11,16 +11,16 @@
 
         conectar();
 
-        $cols = array('id', 'nombre', 'descripcion', 'precio','existencias');
-
+        $cols = array('codigo', 'nombre', 'descripcion', 'precio', 'existencias');
+        
         $vals = array();
         for ($i = 0; $i < count($cols); $i++) {
             $vals[] = "";
         }
-
+        
         $variables = array_combine($cols, $vals);
         extract($variables);
-
+        var_dump($variables);
         $existe = TRUE;
         foreach ($cols as $col) {
             $existe = $existe && isset($_POST[$col]);
@@ -45,14 +45,14 @@
                 comprobar_descripcion($descripcion, $error);
                 comprobar_errores($error);
 
-                $res = pg_query("begin");
+                 $res = pg_query("begin");
                 bloquear_tabla_articulos();
                 comprobar_existe_articulo($codigo, $id, $error);
                 $valores = compact('id', 'codigo', 'nombre', 'descripcion', 'precio', 'existencias');
-                $res = insertar_copia($valores);
+                $res = insertar($valores);
                 comprobar_operacion($res, $error);
                 $res = pg_query("commit"); ?>
-                <h3>Se ha insertado la película correctamente</h3><?php
+                <h3>Se ha insertado el socio correctamente</h3><?php
                 $exito = TRUE;
             } catch (Exception $e) {
                 foreach ($error as $err): ?>
