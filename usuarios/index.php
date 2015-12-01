@@ -9,8 +9,9 @@
     </head>
     <body><?php
         require '../comunes/auxiliar.php';
+        conectar();
         mostrar_dato_inicial();
-        comprobar_es_socio_admin();
+        comprobar_socio_admin();
         
         $columnas = array(
             'numero'           => array(

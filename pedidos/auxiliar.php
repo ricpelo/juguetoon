@@ -99,4 +99,4 @@ function generar_resultado1($params) {
             endif;
             ?>
             </table>  
-            }
+            

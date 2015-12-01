@@ -39,7 +39,11 @@
         }
 
         if ($existe) {
-
+            
+            if ($_POST['precio_format'] == "") {
+                $_POST['precio_format'] = normalizar_precio($_POST['precio']);
+            }
+            
             foreach ($variables as $k => $v) {
                 $variables[$k] = trim($_POST[$k]);
             }
