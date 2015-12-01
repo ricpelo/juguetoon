@@ -44,7 +44,7 @@
         );
         
         mostrar_dato_inicial();
-        comprobar_socio_admin();
+        comprobar_usuario_admin();
         index($columnas, 'v_articulos'); ?>
     </body>
 </html>

@@ -8,7 +8,7 @@
 	</head>
     <body><?php
             require 'comunes/auxiliar.php';
-            comprobar_socio_admin(); ?>
+            comprobar_usuario_admin(); ?>
 		<div align="center">
 			<img src="imagenes/juguetoon.jpg" style="margin:auto;">
 		</div>
