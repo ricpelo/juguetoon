@@ -20,7 +20,7 @@
         
         $variables = array_combine($cols, $vals);
         extract($variables);
-        var_dump($variables);
+        
         $existe = TRUE;
         foreach ($cols as $col) {
             $existe = $existe && isset($_POST[$col]);
