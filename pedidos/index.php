@@ -21,10 +21,7 @@
                 $_SESSION['carrito'][$producto] = $cantidad;
             }
 
-        } 
- $carrito = $_SESSION['carrito'];
-            var_dump($carrito);
-
+        }
 
         $columnas = array(
             'codigo' => array(

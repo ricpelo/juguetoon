@@ -83,7 +83,6 @@ function generar_resultado1($params) {
 ?><hr><?php
  $carrito = $_SESSION['carrito'];
  
-        var_dump($carrito);
         if(sizeof($carrito) > 0): ?>
             <table border="1" style="margin: auto;">
             <th>El Carrito</th><?php
