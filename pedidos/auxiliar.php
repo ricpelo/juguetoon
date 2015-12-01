@@ -79,3 +79,25 @@ function generar_resultado1($params) {
             <h3>La búsqueda no ha dado ningún resultado.</h3><?php
         endif;
     }
+    /***********************El carrito*************************************************/
+?><hr><?php
+ $carrito = $_SESSION['carrito'];
+ 
+        var_dump($carrito);
+        if(sizeof($carrito) > 0): ?>
+            <table border="1" style="margin: auto;">
+            <th>El Carrito</th><?php
+
+            foreach ($carrito as $k => $v):
+
+                ?><tr>
+                   <td>
+                   <?=$carrito[$k]?></td>
+                </tr>
+              <?php
+              
+            endforeach; 
+            endif;
+            ?>
+            </table>  
+            }

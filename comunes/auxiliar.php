@@ -154,7 +154,7 @@
     }
     
     function conectar() {
-        return pg_connect("host=localhost dbname=datos user=usuario password=usuario");
+        return pg_connect("host=localhost dbname=dato user=cliente password=cliente");
     }
         
     function volver() { ?>

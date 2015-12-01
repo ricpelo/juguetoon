@@ -20,8 +20,10 @@
                 );
                 $_SESSION['carrito'][$producto] = $cantidad;
             }
-            var_dump($_SESSION['carrito']);
+
         } 
+ $carrito = $_SESSION['carrito'];
+            var_dump($carrito);
 
 
         $columnas = array(
