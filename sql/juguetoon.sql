@@ -30,6 +30,22 @@ create table pedidos(
 	fecha 		date		not null default CURRENT_DATE
 );
 
+drop table if exists lineas_pedidos cascade;
+
+create table lineas_pedidos(
+	id		bigserial 	   constraint pk_lineas_pedidos primary key,
+	pedido_id	bigint		   not null constraint fk_lineas_pedidos_pedidos 
+					   references pedidos(id) 
+					   on delete cascade on update cascade,
+	cantidad	numeric(4,2) 	   not null,
+
+	--Datos duplicados de la tabla articulos para tenerlos en esta tabla--	
+	codigo 		char(13) not null,
+	descripcion	varchar(150),
+	precio		numeric(6,2) not null
+
+);
+
 
 insert into articulos(codigo, nombre, descripcion, precio,existencias)
 values  (1000, 'Barco Pirata Playmobil', 'Piratas en los clics', 40.00,10),
