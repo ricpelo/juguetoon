@@ -13,12 +13,14 @@
                 'bonito'   => 'Código',
                 'criterio' => 'codigo',
                 'exacto'   => TRUE,
-                'mostrar'  => TRUE
+                'mostrar'  => TRUE,
+                'align'     => 'center'
             ),
             'nombre' => array(
                 'bonito'   => 'Nombre',
                 'criterio' => 'nombre',
-                'mostrar'  => TRUE
+                'mostrar'  => TRUE,
+                'align'     => 'center'
             ),
             'descripcion' => array(
                 'bonito'   => 'Descripcion',
@@ -36,7 +38,8 @@
                 'bonito'   => 'Existencias',
                 'criterio' => 'existencias',
                 'exacto'   => TRUE,
-                'mostrar'  => TRUE
+                'mostrar'  => TRUE,
+                'align'     => 'center'
             )
         );
 
