@@ -10,9 +10,10 @@
     <body><?php
         require '../comunes/auxiliar.php';
         
-        comprobar_es_socio_admi();
-        
         conectar();
+
+        mostrar_dato_inicial();
+        comprobar_usuario_admin();
         
         if(isset($_GET['id'])):
             $id = trim($_GET['id']);

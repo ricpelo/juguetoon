@@ -16,11 +16,15 @@
         }
     }
     
-    function comprobar_socio_admin() {
+    function comprobar_usuario_admin() {
         if(isset($_SESSION['usuario_id'])):
             $res = pg_query_params("select admin from usuarios where id = $1", array($_SESSION['usuario_id']));
             $fila = pg_fetch_assoc($res, 0);
-            return $fila['admin'] == "t";
+            $admin = $fila['admin'] == "t";
+            
+            if(!$admin) {
+                header("Location: ../index.php");
+            }
         endif;
     }
     

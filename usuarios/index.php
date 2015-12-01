@@ -11,7 +11,7 @@
         require '../comunes/auxiliar.php';
         conectar();
         mostrar_dato_inicial();
-        comprobar_socio_admin();
+        comprobar_usuario_admin();
         
         $columnas = array(
             'numero'           => array(

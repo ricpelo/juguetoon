@@ -6,7 +6,9 @@
 		<title>JUGUETOON</title>
 		<meta charset="utf-8"/>
 	</head>
-	<body>
+    <body><?php
+            require 'comunes/auxiliar.php';
+            comprobar_socio_admin(); ?>
 		<div align="center">
 			<img src="imagenes/juguetoon.jpg" style="margin:auto;">
 		</div>

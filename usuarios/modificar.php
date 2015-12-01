@@ -12,7 +12,8 @@
         require 'modificar_auxiliar.php';
         require '../comunes/auxiliar.php';
 
-        comprobar_es_socio_admi();
+        mostrar_dato_inicial();
+        comprobar_usuario_admin();
         
         $con = conectar();
         
