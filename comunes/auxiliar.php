@@ -15,32 +15,22 @@
             <hr /><?php
         }
     }
-    function comprobar_es_socio_admin() {
-        if(isset($_SESSION['socio_admin'])):
-            $socio_admin = $_SESSION['socio_admin'];
-            
-            if($socio_admin == "f"):
-                header("Location: ../alquileres/index.php");
-                return;
-            endif;
-        endif;    
-    }
-    /*
+    
     function comprobar_socio_admin() {
-        if(isset($_SESSION['socio_id'])):
-            $res = pg_query_params("select admin from socios where id = $1", array($_SESSION['socio_id']));
+        if(isset($_SESSION['usuario_id'])):
+            $res = pg_query_params("select admin from usuarios where id = $1", array($_SESSION['usuario_id']));
             $fila = pg_fetch_assoc($res, 0);
-            $_SESSION['socio_admin'] = $fila['admin'];
+            return $fila['admin'] == "t";
         endif;
     }
-     */
+    
     function comprobar_usuario_conectado() {
         if(!usuario_conectado()):
-            header("Location: ../socios/login.php");
+            header("Location: comunes/login.php");
             return;
         else:
-            $socio_id = $_SESSION['socio_id'];
-            $res = pg_query_params("select nombre from socios where id = $1", array($socio_id));
+            $usuario_id = $_SESSION['usuario_id'];
+            $res = pg_query_params("select nick from usuarios where id = $1", array($socio_id));
             
             if(pg_num_rows($res) == 0):
                 header("Location: ../socios/login.php");
