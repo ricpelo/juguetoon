@@ -5,7 +5,7 @@ define('PATRON', '/^(-?\d*)(,\d{2})?(\s*€)?$/');
 function comprobar_nombre($nombre, &$error)
 {
     if (strlen($nombre) > 50) {
-        $error[] = "el nombre no puede tener más de 50 caracteres";
+        $error[] = "El nombre no puede tener más de 50 caracteres";
     }
 }
 
@@ -15,7 +15,7 @@ function comprobar_precio(&$precio, &$error)
         $c = array();
         preg_match(PATRON, $precio, $c);
         if (empty($c)) {
-            $error[] = "el precio no es correcto";
+            $error[] = "El precio no es correcto";
         } else {
             $precio = normalizar_precio($precio);
             $patron = '/^(-?\d*),(\d*)\s€$/';
@@ -24,7 +24,7 @@ function comprobar_precio(&$precio, &$error)
             $precio = "${c[1]}.${c[2]}";
             $valor = (float) $precio;
             if ($valor < 0 || $valor >= 10000) {
-                $error[] = "el precio debe estar entre 0 y 9999,99 €";
+                $error[] = "El precio debe estar entre 0 y 9999,99 €";
             } else {
                 $precio;
             }
@@ -35,20 +35,20 @@ function comprobar_precio(&$precio, &$error)
 function comprobar_codigo($codigo, &$error)
 {
     if ($codigo == "") {
-        $error[] = "el código es obligatorio";
+        $error[] = "El código es obligatorio";
     } else {
         if (!ctype_digit($codigo)) {
-            $error[] = "el código sólo puede tener dígitos";
+            $error[] = "El código sólo puede tener dígitos";
         }
         if (strlen($codigo) > 13) {
-            $error[] = "el código no puede tener más de 13 dígitos";
+            $error[] = "El código no puede tener más de 13 dígitos";
         }
     }
 }
 
 function comprobar_operacion($res, &$error) {
     if (pg_affected_rows($res) == 0) {
-        $error[] = "no se ha podido modificar el artículo.";
+        $error[] = "No se ha podido modificar el artículo.";
         throw new Exception();
     }
 }
@@ -105,20 +105,20 @@ function normalizar_precio($precio)
 function comprobar_nombre_obligatorio($nombre, &$error)
 {
     if ($nombre == "") {
-        $error[] = "el nombre es obligatorio";
+        $error[] = "El nombre es obligatorio";
     }
 }
 
 function comprobar_precio_obligatorio($precio, &$error)
 {
     if ($precio == "") {
-        $error[] = "el precio es obligatorio";
+        $error[] = "El precio es obligatorio";
     }
 }
 
 function comprobar_descripcion($descripcion, &$error) {
     if (strlen($descripcion) > 150) {
-        $error[] = "la descripción no puede tener más de 150 caracteres";
+        $error[] = "La descripción no puede tener más de 150 caracteres";
     }
 }
 
@@ -130,7 +130,7 @@ function comprobar_existe_articulo($codigo, $id, &$error)
                                    id != $2", array($codigo, $id));
     if (pg_num_rows($res) > 0) {
         $res = pg_query("rollback");
-        $error[] = "ya existe un articulo con ese código";
+        $error[] = "Ya existe un artículo con ese código";
         throw new Exception();
     }
 }

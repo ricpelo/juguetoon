@@ -52,7 +52,7 @@
                 $res = insertar($valores);
                 comprobar_operacion($res, $error);
                 $res = pg_query("commit"); ?>
-                <h3>Se ha insertado el socio correctamente</h3><?php
+                <h3>El articulo se ha insertado correctamente</h3><?php
                 $exito = TRUE;
             } catch (Exception $e) {
                 foreach ($error as $err): ?>
