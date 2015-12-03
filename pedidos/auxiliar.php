@@ -18,9 +18,8 @@ function index1($columnas, $vista) {
                                       order by $orden $sentido", $pqp);
  
         $params['res'] = $res;
-        
         generar_resultado1($params); ?>
-        <a href="insertar.php"><input type="button" value="Insertar" /></a><?php
+        <hr><a href="insertar.php"><input type="button" value="Insertar" /></a><?php
     }
 
 function generar_resultado1($params) {
@@ -28,7 +27,7 @@ function generar_resultado1($params) {
         extract($params);
         
         if(pg_num_rows($res) > 0): ?>
-            <table border="1" style="margin: auto;">
+            <hr><table border="1" style="margin: auto;">
                 <thead><?php
                     $href = "index.php?";
                                       
@@ -66,8 +65,8 @@ function generar_resultado1($params) {
                             <td colspan="2">
                                 <form action="index.php" method="get">
                                     <input type="hidden" name="codigo" value="<?= trim($fila['codigo']) ?>" />
-                                    <label for="cantidad">Cantidad</label>
-                                    <input type="number" name="cantidad" value="0" min="0" max="<?= $fila['existencias']?>"/> 
+                                    <label for="cantidad">Cantidad:</label>
+                                    <input type="number" style="width:40px;" name="cantidad" value="0" min="0" max="<?= $fila['existencias']?>"/> 
                                     <input type="submit" value="Añadir al carrito" />
                                 </form>
                             </td>
@@ -80,7 +79,7 @@ function generar_resultado1($params) {
         endif;
     }
     /***********************El carrito*************************************************/
-?><hr><?php
+?><?php
  $carrito = $_SESSION['carrito'];
  
         if(sizeof($carrito) > 0): ?>
