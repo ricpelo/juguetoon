@@ -30,6 +30,12 @@ create table pedidos(
 	fecha 		date		not null default CURRENT_DATE
 );
 
+insert into pedidos(numero,fecha) 
+values (1000,current_date),
+       (1001,current_date-1),
+       (1002,current_date-5),
+       (1003,current_date-3);
+
 drop table if exists lineas_pedidos cascade;
 
 create table lineas_pedidos(
