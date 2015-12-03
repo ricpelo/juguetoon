@@ -30,3 +30,15 @@ function insertar($valores)
                             values ($comodines)", $valores);
     return $res;
 }
+
+function comprobar_existe_articulo($codigo, &$error)
+{
+    $res = pg_query_params("select *
+                              from articulos
+                             where codigo = $1", array($codigo,));
+    if (pg_num_rows($res) > 0) {
+        $res = pg_query("rollback");
+        $error[] = "Ya existe un artículo con ese código";
+        throw new Exception();
+    }
+}

@@ -122,15 +122,3 @@ function comprobar_descripcion($descripcion, &$error) {
     }
 }
 
-function comprobar_existe_articulo($codigo, $id, &$error)
-{
-    $res = pg_query_params("select id
-                              from articulos
-                             where codigo = $1 and
-                                   id != $2", array($codigo, $id));
-    if (pg_num_rows($res) > 0) {
-        $res = pg_query("rollback");
-        $error[] = "Ya existe un artículo con ese código";
-        throw new Exception();
-    }
-}

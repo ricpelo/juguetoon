@@ -45,9 +45,9 @@
                 comprobar_descripcion($descripcion, $error);
                 comprobar_errores($error);
 
-                 $res = pg_query("begin");
+                $res = pg_query("begin");
                 bloquear_tabla_articulos();
-                comprobar_existe_articulo($codigo, $id, $error);
+                comprobar_existe_articulo($codigo, $error);
                 $valores = compact('id', 'codigo', 'nombre', 'descripcion', 'precio', 'existencias');
                 $res = insertar($valores);
                 comprobar_operacion($res, $error);
