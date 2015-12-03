@@ -116,9 +116,4 @@ function comprobar_precio_obligatorio($precio, &$error)
     }
 }
 
-function comprobar_descripcion($descripcion, &$error) {
-    if (strlen($descripcion) > 150) {
-        $error[] = "La descripción no puede tener más de 150 caracteres";
-    }
-}
 

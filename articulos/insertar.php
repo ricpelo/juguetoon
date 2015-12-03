@@ -11,7 +11,7 @@
 
         conectar();
 
-        $cols = array('codigo', 'nombre', 'descripcion', 'precio', 'existencias');
+        $cols = array('codigo', 'nombre', 'precio', 'existencias');
         
         $vals = array();
         for ($i = 0; $i < count($cols); $i++) {
@@ -42,13 +42,12 @@
                 comprobar_precio_obligatorio($precio, $error);
                 comprobar_precio($precio, $error);
                 comprobar_codigo($codigo, $error);
-                comprobar_descripcion($descripcion, $error);
                 comprobar_errores($error);
 
                 $res = pg_query("begin");
                 bloquear_tabla_articulos();
                 comprobar_existe_articulo($codigo, $error);
-                $valores = compact('id', 'codigo', 'nombre', 'descripcion', 'precio', 'existencias');
+                $valores = compact('id', 'codigo', 'nombre', 'precio', 'existencias');
                 $res = insertar($valores);
                 comprobar_operacion($res, $error);
                 $res = pg_query("commit"); ?>

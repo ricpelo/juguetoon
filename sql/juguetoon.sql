@@ -16,7 +16,6 @@ create table articulos (
     id 		bigserial 	constraint pk_articulos primary key,
     codigo 	char(13) 	not null constraint uq_articulos_codigo unique,
     nombre 	varchar(50),
-    descripcion varchar(150),
     precio 	numeric(6,2) 	not null,
     borrado 	bool 		not null default false,
     existencias int 		default 0
@@ -53,9 +52,9 @@ create table lineas_pedidos(
 );
 
 
-insert into articulos(codigo, nombre, descripcion, precio,existencias)
-values  (1000, 'Barco Pirata Playmobil', 'Piratas en los clics', 40.00,10),
-        (1001, 'PlaStation 4', 'Consola de Sony', 350.00,30);
+insert into articulos(codigo, nombre, precio,existencias)
+values  (1000, 'Barco Pirata Playmobil', 40.00,10),
+        (1001, 'PlaStation 4', 350.00,30);
 
 
 insert into usuarios(numero, nick, password, admin)
@@ -65,7 +64,7 @@ values  (1, 'juan', md5('juan'), true),
 drop view if exists v_articulos;
 
 create view v_articulos as
-select id, codigo, nombre, descripcion, precio,
+select id, codigo, nombre, precio,
        trim(to_char(precio, '9999D99 L')) as precio_format,
        existencias
 from articulos

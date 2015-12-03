@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Modificar un socio</title>
+        <title>Modificar un artículo</title>
         <meta charset="utf-8" />
     </head>
     <body><?php
@@ -10,10 +10,11 @@
         require 'modificar_auxiliar.php';
         require '../comunes/auxiliar.php';
         
-        comprobar_socio_admin();
+        comprobar_usuario_admin();
+        
         conectar();
 
-        $cols = array('id', 'codigo', 'nombre', 'descripcion', 'precio', 'precio_format', 'existencias');
+        $cols = array('id', 'codigo', 'nombre', 'precio', 'precio_format', 'existencias');
 
         $vals = array();
         for ($i = 0; $i < count($cols); $i++) {
@@ -58,13 +59,12 @@
                 comprobar_precio_obligatorio($precio, $error);
                 comprobar_precio($precio, $error);
                 comprobar_codigo($codigo, $error);
-                comprobar_descripcion($descripcion, $error);
                 comprobar_errores($error);
 
                 $res = pg_query("begin");
                 bloquear_tabla_articulos();
                 comprobar_existe_articulo($codigo, $id, $error);
-                $valores = compact('id', 'codigo', 'nombre', 'descripcion', 'precio', 'existencias');
+                $valores = compact('id', 'codigo', 'nombre', 'precio', 'existencias');
                 $res = modificar_articulo($valores);
                 comprobar_operacion($res, $error);
                 $res = pg_query("commit"); ?>

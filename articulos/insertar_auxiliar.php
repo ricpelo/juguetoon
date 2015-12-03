@@ -11,8 +11,6 @@ function formulario_insertar($variables)
         <input type="text" name="precio" value="<?= $precio ?>" /><br/>
         <label for="existencias">Existencias: </label>
         <input type="text" name="existencias" value="<?= $existencias ?>" /><br/>
-        <label for="descripcion">Descripción:</label><br/>
-        <textarea name="descripcion"><?= $descripcion ?></textarea><br/>
         <input type="submit" value="Insertar" />
     </form><?php
 }
