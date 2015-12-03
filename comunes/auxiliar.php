@@ -284,7 +284,7 @@
                 $_SESSION['criterio'] = $criterio;
             endif;
         endif;
-        
+
         return compact('criterio', 'columna', 'orden', 'sentido');
     }
     
@@ -296,13 +296,11 @@
         
         formulario_busqueda($params);
         
-        $con = conectar();
-        
         list($where, $pqp) = filtro($columnas, $columna, $criterio);
-        
-        $res = pg_query_params($con, "select * from $vista
-                                      where $where
-                                      order by $orden $sentido", $pqp);
+
+        $res = pg_query_params("select * from $vista
+                                 where $where
+                              order by $orden $sentido", $pqp);
  
         $params['res'] = $res;
         generar_resultado($params, $bol); ?>

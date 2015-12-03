@@ -1,3 +1,5 @@
+<?php session_start() ?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -7,7 +9,10 @@
         <?php
         require 'auxiliar.php';
         require '../comunes/auxiliar.php';
-
+        conectar();
+        comprobar_usuario_admin();
+        mostrar_dato_inicial();
+        
         $columnas = array(
             'codigo' => array(
                 'bonito'   => 'Código',
@@ -38,8 +43,6 @@
             )
         );
         
-        mostrar_dato_inicial();
-        comprobar_usuario_admin();
         index($columnas, 'v_articulos'); ?>
     </body>
 </html>
