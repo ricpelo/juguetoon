@@ -1,5 +1,7 @@
 <?php
     
+    define('APP_ROOT', '/juguetoon/');
+    
     function mostrar_dato_inicial() {
         if (isset($_SESSION['usuario_id'])) {
             $id = $_SESSION['usuario_id'];
@@ -22,15 +24,18 @@
     }
     
     function comprobar_usuario_admin() {
-        if(isset($_SESSION['usuario_id'])):
+        if(isset($_SESSION['usuario_id'])) {
             $res = pg_query_params("select admin from usuarios where id = $1", array($_SESSION['usuario_id']));
             $fila = pg_fetch_assoc($res, 0);
             $admin = $fila['admin'] == "t";
             
             if(!$admin) {
-                header("Location: ../index.php");
+                header("Location: " . APP_ROOT . "no_admin.php");
             }
-        endif;
+        }
+        else {
+            header("Location: " . APP_ROOT . "comunes/login.php");
+        }
     }
     
     function comprobar_usuario_conectado() {

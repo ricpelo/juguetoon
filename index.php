@@ -8,6 +8,7 @@
 	</head>
     <body><?php
             require 'comunes/auxiliar.php';
+            conectar();
             comprobar_usuario_admin(); ?>
 		<div align="center">
 			<img src="imagenes/juguetoon.jpg" style="margin:auto;">
