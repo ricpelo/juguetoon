@@ -26,6 +26,6 @@
                                         'mostrar' => TRUE
             )
         );
-        index($columnas, 'usuarios');  ?> 
+        index($columnas, 'usuarios', 'usuarios');  ?> 
     </body>
 </html>

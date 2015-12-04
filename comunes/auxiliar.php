@@ -216,7 +216,7 @@
         </form><?php
     }
     
-    function recoger_parametros($columnas) {
+    function recoger_parametros($columnas, $modulo) {
         
         // Esta es la cadena a buscar
        // $criterio = isset($_GET['criterio']) ? trim($_GET['criterio']) : "";
@@ -231,14 +231,14 @@
                 return array();
             endif;
             
-            $_SESSION['orden'] = $orden;
+            $_SESSION[$modulo]['orden'] = $orden;
         else:
-            if(isset($_SESSION['orden'])):
-                $orden = $_SESSION['orden'];
+            if(isset($_SESSION[$modulo]['orden'])):
+                $orden = $_SESSION[$modulo]['orden'];
             else:
                 foreach($columnas as $k => $v) break;
                 $orden = $k; // array_keys($columnas)[0]
-                $_SESSION['orden'] = $orden;
+                $_SESSION[$modulo]['orden'] = $orden;
             endif;
             
             $_SESSION['orden'] = $orden;
@@ -251,46 +251,46 @@
                 header("Location: index.php");
                 return array();
             endif;
-            $_SESSION['sentido'] = $sentido;
+            $_SESSION[$modulo]['sentido'] = $sentido;
         else:
-            if(isset($_SESSION['sentido'])):
-                $sentido = $_SESSION['sentido'];
+            if(isset($_SESSION[$modulo]['sentido'])):
+                $sentido = $_SESSION[$modulo]['sentido'];
             else:
                 $sentido = "asc";
             endif;
-            $_SESSION['sentido'] = $sentido;
+            $_SESSION[$modulo]['sentido'] = $sentido;
         endif;
         
         if(isset($_GET['columna'])):
             $columna = trim($_GET['columna']);
-            $_SESSION['columna'] = $columna;
+            $_SESSION[$modulo]['columna'] = $columna;
         else:
-            if(isset($_SESSION['columna'])):
-                $columna = $_SESSION['columna'];
+            if(isset($_SESSION[$modulo]['columna'])):
+                $columna = $_SESSION[$modulo]['columna'];
             else:
                 $columna = "";
-                $_SESSION['columna'] = $columna; 
+                $_SESSION[$modulo]['columna'] = $columna; 
             endif;
         endif;
         
         if(isset($_GET['criterio'])):
             $criterio = trim($_GET['criterio']);
-            $_SESSION['criterio'] = $criterio;
+            $_SESSION[$modulo]['criterio'] = $criterio;
         else:
-            if(isset($_SESSION['criterio'])):
-                $criterio = $_SESSION['criterio'];
+            if(isset($_SESSION[$modulo]['criterio'])):
+                $criterio = $_SESSION[$modulo]['criterio'];
             else:
                 $criterio = "";
-                $_SESSION['criterio'] = $criterio;
+                $_SESSION[$modulo]['criterio'] = $criterio;
             endif;
         endif;
 
         return compact('criterio', 'columna', 'orden', 'sentido');
     }
     
-    function index($columnas, $vista, $bol = false) {
+    function index($columnas, $vista, $modulo, $bol = false) {
                 
-        extract(recoger_parametros($columnas));
+        extract(recoger_parametros($columnas, $modulo));
         
         $params = compact('columnas', 'columna', 'criterio', 'orden', 'sentido');
         

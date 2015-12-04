@@ -50,7 +50,7 @@
             )
         );
 
-        index($columnas, 'v_articulos',true); ?>
+        index($columnas, 'v_articulos', 'pedidos', true); ?>
 
     </body>
 </html>
