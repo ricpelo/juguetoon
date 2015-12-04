@@ -8,12 +8,12 @@
     <body><?php
         require 'auxiliar.php';
         require '../comunes/auxiliar.php';
-        // Comentado a la espera de compañeros. "Funcional"
-        // comprobar_admin_conectado();
+
+         conectar();
+         comprobar_usuario_admin();
         
         if (isset($_GET['id'])):
             $id = trim($_GET['id']);
-            conectar();
             $res = pg_query_params("select codigo, nombre
                                       from v_articulos
                                      where id = $1", array($id));
@@ -23,8 +23,9 @@
             else:
                 $fila = pg_fetch_assoc($res, 0);
                 extract($fila); ?>
-                <h4><?= $codigo ?> : <?= $nombre ?></h4>
                 <h3>¿Está seguro de querer borrar el artículo?</h3>
+                <p>Código => <?= $codigo ?></p>
+                <p>Nombre => <?= $nombre ?></p>
                 <form action="borrar.php" method="post">
                     <input type="hidden" name="id" value="<?= $id ?>" />
                     <input type="submit" value="Sí" />

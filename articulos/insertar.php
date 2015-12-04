@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,6 +11,7 @@
         require '../comunes/auxiliar.php';
 
         conectar();
+        comprobar_usuario_admin();
 
         $cols = array('codigo', 'nombre', 'precio', 'existencias');
         

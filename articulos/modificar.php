@@ -10,9 +10,8 @@
         require 'modificar_auxiliar.php';
         require '../comunes/auxiliar.php';
         
-        comprobar_usuario_admin();
-        
         conectar();
+        comprobar_usuario_admin();
 
         $cols = array('id', 'codigo', 'nombre', 'precio', 'precio_format', 'existencias');
 
