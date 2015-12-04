@@ -190,7 +190,7 @@
     }
         
     function volver() { ?>
-        <a href="index.php"><input type="button" value="Volver" /></a><?php
+        <a href="<?= APP_ROOT ?>"><input type="button" value="Volver" /></a><?php
     }
     
     function formulario_busqueda($params) {
