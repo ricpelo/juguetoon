@@ -13,12 +13,12 @@ create table usuarios (
 drop table if exists articulos cascade;
 
 create table articulos (
-    id 		bigserial 	constraint pk_articulos primary key,
-    codigo 	char(13) 	not null constraint uq_articulos_codigo unique,
-    nombre 	varchar(50),
-    precio 	numeric(6,2) 	not null,
-    borrado 	bool 		not null default false,
-    existencias int 		default 0
+    id          bigserial       constraint pk_articulos primary key,
+    codigo      char(13)        not null constraint uq_articulos_codigo unique,
+    nombre      varchar(50),
+    precio      numeric(6,2)    not null,
+    borrado 	bool 		    not null default false,
+    existencias int             default 0
 );
 
 drop table if exists pedidos cascade; 
