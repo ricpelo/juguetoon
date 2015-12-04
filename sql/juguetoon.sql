@@ -4,7 +4,7 @@ drop table if exists usuarios cascade;
 
 create table usuarios (
     id          bigserial       constraint pk_usuarios primary key,
-    numero      numeric(13)     not null constraint uq_usuarios_numero unique, 
+    numero      numeric(13)     not null constraint uq_usuarios_numero unique,
     nick        varchar(100)    not null,
     password    char(32),
     admin       bool            not null default false

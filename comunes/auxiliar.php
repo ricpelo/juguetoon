@@ -1,6 +1,6 @@
 <?php
     
-    define('APP_ROOT', '/juguetoon/');
+    define('APP_ROOT', '/');
     
     function mostrar_dato_inicial() {
         if (isset($_SESSION['usuario_id'])) {
