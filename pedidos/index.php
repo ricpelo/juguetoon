@@ -35,11 +35,6 @@
                 'criterio' => 'nombre',
                 'mostrar'  => TRUE
             ),
-            'descripcion' => array(
-                'bonito'   => 'Descripcion',
-                'criterio' => 'descripcion',
-                'mostrar'  => TRUE
-            ),
             'precio_format' => array(
                 'bonito'    => 'Precio',
                 'criterio'  => 'precio_format',
