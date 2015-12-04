@@ -12,11 +12,11 @@
         require 'insertar_auxiliar.php';
         require 'auxiliar.php';
 
+        conectar();
+
         mostrar_dato_inicial();
         comprobar_usuario_admin();
 
-        $con = conectar();
-        
         $cols = array('numero', 'nick', 'password', 'admin');
         $vals = array();
         

@@ -11,11 +11,11 @@
         require 'auxiliar.php';
         require 'modificar_auxiliar.php';
         require '../comunes/auxiliar.php';
+        
+        conectar();
 
         mostrar_dato_inicial();
         comprobar_usuario_admin();
-        
-        $con = conectar();
         
         $cols = array('id', 'numero', 'nick', 'password', 'admin');
         $vals = array();
