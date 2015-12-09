@@ -1,6 +1,7 @@
 <?php
     
     define('APP_ROOT', '/');
+    define('FPP', 5);
     
     function mostrar_dato_inicial() {
         if (isset($_SESSION['usuario_id'])) {
@@ -159,7 +160,21 @@
                             }
                     endfor; ?>
                 </tbody>
-            </table><?php
+            </table>
+            <div style="text-align: center;"><?php
+                for ($i = 1; $i <= $npags; $i++) {
+                    if ($npag == $i) { ?>
+                        <span><?= $i ?></span><?php
+                    } else { ?>
+                <a href=<?= "${href}npag=$i" ?> ><?= $i ?></a><?php
+                    }
+                    
+                    if ($i != $npags) { ?>
+                        <span>,</span><?php
+                    }
+                } ?>
+            </div>
+            <br /><?php
         else: ?>
             <h3>La búsqueda no ha dado ningún resultado.</h3><?php
         endif;
@@ -284,24 +299,44 @@
                 $_SESSION[$modulo]['criterio'] = $criterio;
             endif;
         endif;
+        
+        if (isset($_GET['npag'])):
+            $npag = $_GET['npag']
+            $SESSION[$modulo]['npag'] = $npag;
+        else:
+            if (isset($SESSION[$modulo]['npag'])):
+                $npag = $SESSION[$modulo]['npag'];
+            else:
+                $npag = 1;
+                $SESSION[$modulo]['npag'] = $npag;
+            endif;
+        endif;
 
-        return compact('criterio', 'columna', 'orden', 'sentido');
+        return compact('criterio', 'columna', 'orden', 'sentido', 'npag');
     }
     
     function index($columnas, $vista, $modulo, $bol = false) {
                 
         extract(recoger_parametros($columnas, $modulo));
         
-        $params = compact('columnas', 'columna', 'criterio', 'orden', 'sentido');
+        $params = compact('columnas', 'columna', 'criterio', 'orden', 'sentido', 'npag');
         
         formulario_busqueda($params);
         
         list($where, $pqp) = filtro($columnas, $columna, $criterio);
-
+        
+        $res = pg_query("select * from $vista");
+        $nfilas = pg_num_rows($res);
+        $npags  = ceil($nfilas/FPP);
+        
         $res = pg_query_params("select * from $vista
                                  where $where
-                              order by $orden $sentido", $pqp);
- 
+                              order by $orden $sentido
+                              limit " . FPP . "
+                              offset " . FPP . "*($npag-1)", $pqp);
+        
+        
+        $params['npags']  = $npags;
         $params['res'] = $res;
         generar_resultado($params, $bol); ?>
         <a href="insertar.php"><input type="button" value="Insertar" /></a><?php

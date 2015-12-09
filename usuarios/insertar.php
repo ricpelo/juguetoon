@@ -50,7 +50,7 @@
                 comprobar_errores($error);
                 
                 $res = pg_query("begin");
-                bloquear_tabla_usuarios($con);                
+                bloquear_tabla_usuarios();                
                 comprobar_existe_usuario($error, $numero);
                 
                 $res = insertar_usuario(compact($cols));
