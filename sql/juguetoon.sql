@@ -59,7 +59,18 @@ values  (1000, 'Barco Pirata Playmobil', 40.00,10),
 
 insert into usuarios(numero, nick, password, admin)
 values  (1, 'juan', md5('juan'), true),
-        (2, 'maria', md5('maria'), false);
+        (2, 'maria', md5('maria'), false),
+        (3, 'maria', md5('maria'), false),
+        (4, 'maria', md5('maria'), false),
+        (5, 'maria', md5('maria'), false),
+        (6, 'maria', md5('maria'), false),
+        (7, 'maria', md5('maria'), false),
+        (8, 'maria', md5('maria'), false),
+        (9, 'maria', md5('maria'), false),
+        (10, 'maria', md5('maria'), false),
+        (11, 'maria', md5('maria'), false),
+        (12, 'maria', md5('maria'), false),
+        (13, 'maria', md5('maria'), false);
 
 drop view if exists v_articulos;
 
