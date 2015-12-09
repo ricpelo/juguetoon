@@ -19,7 +19,7 @@
                     </p>
                 </fieldset>
             </div>
-            <hr /><?php
+            <hr style="clear:both;" /><?php
         }
     }
     
