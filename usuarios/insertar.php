@@ -50,13 +50,13 @@
                 comprobar_errores($error);
                 
                 $res = pg_query("begin");
-                bloquear_tabla_usuarios($con);                
+                bloquear_tabla_usuarios();                
                 comprobar_existe_usuario($error, $numero);
                 
                 $res = insertar_usuario(compact($cols));
                 
-                comprobar_insercion($con, $res, $error);
-                $res = pg_query($con, "commit"); ?>
+                comprobar_insercion($res, $error);
+                $res = pg_query("commit"); ?>
                 <h3>Se ha insertado correctamente el usuario</h3><?php
                 $exito = true;
             } catch(Exception $e) {

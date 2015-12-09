@@ -29,6 +29,6 @@
         endif;
     };
     
-    function bloquear_tabla_usuarios($con) {            
-        $res = pg_query($con, "lock table usuarios in share mode;");
+    function bloquear_tabla_usuarios() {            
+        $res = pg_query("lock table usuarios in share mode;");
     }
