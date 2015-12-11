@@ -162,17 +162,19 @@
                 </tbody>
             </table>
             <div style="text-align: center;"><?php
-                for ($i = 1; $i <= $npags; $i++) {
-                    if ($npag == $i) { ?>
-                        <span><?= $i ?></span><?php
-                    } else { ?>
-                <a href=<?= "${href}npag=$i" ?> ><?= $i ?></a><?php
+                if ($npags != 1) {
+                    for ($i = 1; $i <= $npags; $i++) {
+                        if ($npag == $i) { ?>
+                            <span><?= $i ?></span><?php
+                        } else { ?>
+                            <a href=<?= "${href}npag=$i" ?> ><?= $i ?></a><?php
+                        }
+                        
+                        if ($i != $npags) { ?>
+                            <span>,</span><?php
+                        }
                     }
-                    
-                    if ($i != $npags) { ?>
-                        <span>,</span><?php
-                    }
-                } ?>
+                }?>
             </div>
             <br /><?php
         else: ?>
