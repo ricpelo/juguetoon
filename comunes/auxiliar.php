@@ -160,26 +160,40 @@
                             }
                     endfor; ?>
                 </tbody>
-            </table>
-            <div style="text-align: center;"><?php
-                if ($npags != 1) {
-                    for ($i = 1; $i <= $npags; $i++) {
-                        if ($npag == $i) { ?>
-                            <span><?= $i ?></span><?php
-                        } else { ?>
-                            <a href=<?= "${href}npag=$i" ?> ><?= $i ?></a><?php
-                        }
-                        
-                        if ($i != $npags) { ?>
-                            <span>,</span><?php
-                        }
-                    }
-                }?>
-            </div>
+            </table><?php
+            paginacion($href, $npag, $npags); ?>
             <br /><?php
         else: ?>
             <h3>La búsqueda no ha dado ningún resultado.</h3><?php
         endif;
+    }
+
+    function paginacion($href, $npag, $npags) { 
+        if ($npags != 1) { ?>
+            <div style="text-align: center;"><?php
+                if ($npag-1 >= 1) {
+                    $next = $npag - 1; ?>
+                    <a href=<?= "${href}npag=$next" ?> >Anterior</a>&nbsp;&nbsp;<?php
+                }
+            
+                for ($i = 1; $i <= $npags; $i++) {
+                    if ($npag == $i) { ?>
+                        <span><?= $i ?></span><?php
+                    } else { ?>
+                        <a href=<?= "${href}npag=$i" ?> ><?= $i ?></a><?php
+                    }
+                    
+                    if ($i != $npags) { ?>
+                        <span>,</span><?php
+                    }
+                }
+            
+                if ($npag+1 <= $npags) { 
+                    $next = $npag + 1; ?>
+                    &nbsp;&nbsp;<a href=<?= "${href}npag=$next" ?> >Siguiente</a><?php
+                } ?>
+            </div><?php
+        }
     }
 
     function selected($value, $col) {
@@ -233,7 +247,7 @@
         </form><?php
     }
     
-    function recoger_parametros($columnas, $modulo) {
+    function recoger_parametros($columnas, $modulo, $npags) {
         
         // Esta es la cadena a buscar
        // $criterio = isset($_GET['criterio']) ? trim($_GET['criterio']) : "";
@@ -303,7 +317,12 @@
         endif;
         
         if (isset($_GET['npag'])):
-            $npag = $_GET['npag'];
+            $npag = trim($_GET['npag']);
+            if($npag > $npags || $npag < 1):
+                header("Location: index.php");
+                return array();
+            endif;
+        
             $_SESSION[$modulo]['npag'] = $npag;
         else:
             if (isset($_SESSION[$modulo]['npag'])):
@@ -318,18 +337,17 @@
     }
     
     function index($columnas, $vista, $modulo, $bol = false) {
-                
-        extract(recoger_parametros($columnas, $modulo));
+        $res = pg_query("select * from $vista");
+        $nfilas = pg_num_rows($res);
+        $npags  = ceil($nfilas/FPP);
+        
+        extract(recoger_parametros($columnas, $modulo, $npags));
         
         $params = compact('columnas', 'columna', 'criterio', 'orden', 'sentido', 'npag');
         
         formulario_busqueda($params);
         
         list($where, $pqp) = filtro($columnas, $columna, $criterio);
-        
-        $res = pg_query("select * from $vista");
-        $nfilas = pg_num_rows($res);
-        $npags  = ceil($nfilas/FPP);
         
         $res = pg_query_params("select * from $vista
                                  where $where
