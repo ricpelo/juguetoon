@@ -301,14 +301,14 @@
         endif;
         
         if (isset($_GET['npag'])):
-            $npag = $_GET['npag']
-            $SESSION[$modulo]['npag'] = $npag;
+            $npag = $_GET['npag'];
+            $_SESSION[$modulo]['npag'] = $npag;
         else:
-            if (isset($SESSION[$modulo]['npag'])):
-                $npag = $SESSION[$modulo]['npag'];
+            if (isset($_SESSION[$modulo]['npag'])):
+                $npag = $_SESSION[$modulo]['npag'];
             else:
                 $npag = 1;
-                $SESSION[$modulo]['npag'] = $npag;
+                $_SESSION[$modulo]['npag'] = $npag;
             endif;
         endif;
 
