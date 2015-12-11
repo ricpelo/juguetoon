@@ -9,7 +9,8 @@
     <body><?php
             require 'comunes/auxiliar.php';
             conectar();
-            comprobar_usuario_admin(); ?>
+            comprobar_usuario_admin(); 
+            salir(); ?>
 		<div align="center">
 			<img src="imagenes/juguetoon.jpg" style="margin:auto;">
 		</div>

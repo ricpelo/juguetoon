@@ -3,12 +3,19 @@
     define('APP_ROOT', '/');
     define('FPP', 5);
     
-    function mostrar_dato_inicial() {
+    function mostrar_dato_inicial() { ?>
+        <a href="/index.php">
+            <img src="../imagenes/juguetoon.jpg" alt="Juguetoon" height="15%" width="15%" style="text-align: left;" />
+        </a><?php       
+        salir(); ?>
+        <hr style="clear:both;" /><?php
+    }
+
+    function salir() { 
         if (isset($_SESSION['usuario_id'])) {
             $id = $_SESSION['usuario_id'];
             $res = pg_query_params("select * from usuarios where id = $1", array($id));
             $usuario = pg_fetch_assoc($res, 0); ?>
-            <img src="../imagenes/juguetoon.jpg" alt="Juguetoon" height="10%" width="10%" style="text-align: left;" />
             <div style="float: right;">
                 <fieldset>
                     <p style="text-align: right;">Usuario: <?= $usuario['nick'] ?></p>
@@ -19,10 +26,9 @@
                         </a>
                     </p>
                 </fieldset>
-            </div>
-            <hr style="clear:both;" /><?php
+            </div><?php
         }
-    }
+    } 
     
     function comprobar_usuario_admin() {
         if(isset($_SESSION['usuario_id'])) {
