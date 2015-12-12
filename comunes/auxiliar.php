@@ -27,6 +27,8 @@
                     </p>
                 </fieldset>
             </div><?php
+        } else { ?>
+            <a href="../comunes/login.php"><img src="../imagenes/BotonLogin.jpg" style="float: right;" /></a><?php
         }
     } 
     
@@ -37,17 +39,17 @@
             $admin = $fila['admin'] == "t";
             
             if(!$admin) {
-                header("Location: " . APP_ROOT . "no_admin.php");
+                header("Location: " . APP_ROOT . "pedidos/index.php");
             }
         }
         else {
-            header("Location: " . APP_ROOT . "comunes/login.php");
+            header("Location: " . APP_ROOT . "pedidos/index.php");
         }
     }
     
     function comprobar_usuario_conectado() {
         if(!usuario_conectado()):
-            header("Location: comunes/login.php");
+            header("Location: pedidos/index.php");
             return;
         else:
             $usuario_id = $_SESSION['usuario_id'];

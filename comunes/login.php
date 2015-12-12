@@ -40,7 +40,8 @@
             <input type="text" name="nick" /><br />
             <label for="password">Contraseña:</label>
             <input type="password" name="password" /><br />
-            <input type="submit" value="Login" />
+            <input type="submit" value="Login" /><?php
+            volver() ?>
         </form>
     </body>
 </html>
