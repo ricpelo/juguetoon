@@ -35,13 +35,16 @@
                 <h3>Error: usuario incorrecto.</h3><?php
             endif;
          endif; ?>
-        <form action="login.php" method="POST">
-            <label for="nick">Nick:</label>
-            <input type="text" name="nick" /><br />
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" /><br />
-            <input type="submit" value="Login" /><?php
-            volver() ?>
-        </form>
+        <div style="text-align: center;">
+            <a href="/index.php"><img src="../imagenes/juguetoon.jpg" /></a>
+            <form action="login.php" method="POST">
+                <label for="nick">Nick:</label>
+                <input type="text" name="nick" style="margin-left: 42px;" /><br />
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" /><br /><br />
+                <input type="submit" value="Login" /><?php
+                volver() ?>
+            </form>
+        </div>
     </body>
 </html>
