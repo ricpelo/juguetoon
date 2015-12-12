@@ -364,7 +364,9 @@
         
         $params['npags']  = $npags;
         $params['res'] = $res;
-        generar_resultado($params, $bol); ?>
-        <a href="insertar.php"><input type="button" value="Insertar" /></a><?php
+        generar_resultado($params, $bol); 
+        if (!$bol) { ?>
+            <a href="insertar.php"><input type="button" value="Insertar" /></a><?php
+        }
         volver();
     }

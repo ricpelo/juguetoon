@@ -8,21 +8,17 @@
         <?php
         require 'auxiliar.php';
         require '../comunes/auxiliar.php';
+        conectar();
 
-        if (isset($_GET['codigo']) && isset($_GET['cantidad'])){
+        if (isset($_GET['codigo']) && isset($_GET['cantidad'])) {
             $producto = trim($_GET['codigo']);
             $cantidad = trim($_GET['cantidad']);
-            if (isset($_SESSION['carrito'][$producto])) {
-                $_SESSION['carrito'][$producto] += $cantidad;
-            } else {
-                $carrito = array (
-                    $producto => $cantidad
-                );
-                $_SESSION['carrito'][$producto] = $cantidad;
-            }
-
+            anadir_producto($producto, $cantidad);
         }
-        conectar();
+        
+        
+        mostrar_dato_inicial();
+        mostrar_carrito();
         $columnas = array(
             'codigo' => array(
                 'bonito'   => 'Código',
