@@ -17,7 +17,7 @@
         mostrar_dato_inicial();
         comprobar_usuario_admin();
         
-        $cols = array('id', 'numero', 'nick', 'password', 'admin');
+        $cols = array('id', 'numero', 'nick', 'password', 'repassword', 'admin');
         $vals = array();
         
         for($i = 0; $i < count($cols); $i++):
@@ -48,23 +48,23 @@
             endforeach;
             
             extract($variables);
-            
             $error = array();
             
             try {
                 comprobar_numero($numero, $error);
                 comprobar_nick_modificar($error, $nick, $id);
                 comprobar_password($password, $error);
+                comprobar_repassword($password, $repassword, $error);
                 comprobar_errores($error);
                 
-                $res = pg_query($con, "begin");
-                bloquear_tabla_usuarios($con);
+                $res = pg_query("begin");
+                bloquear_tabla_usuarios();
                 comprobar_existe_usuario($error, $numero, $id);
                 $password = md5($password);
                 $res = modificar_usuario(compact($cols));
                 
                 comprobar_modificacion($res, $error);
-                $res = pg_query($con, "commit"); ?>
+                $res = pg_query("commit"); ?>
                 <h3>Se ha modificado correctamente el usuario</h3><?php
                 $exito = true;
             } catch(Exception $e) {
@@ -73,7 +73,6 @@
                 endforeach;
             }
         endif;
-        
         
         if(!isset($exito)):
             formulario_modificar($variables);

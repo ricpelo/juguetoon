@@ -29,6 +29,12 @@
         endif;
     };
     
+    function comprobar_repassword($password, $repassword, &$error) {
+        if($password !== $repassword):
+            $error[] = "La contraseña no coincide. Por favor, vuelva a intentarlo.";
+        endif;
+    }
+    
     function bloquear_tabla_usuarios() {            
         $res = pg_query("lock table usuarios in share mode;");
     }

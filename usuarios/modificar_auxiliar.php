@@ -2,6 +2,8 @@
     function modificar_usuario($valores) {
         $id = $valores['id'];
         unset($valores['id']);
+        $repassword = $valores['repassword'];
+        unset($valores['repassword']);
         $pqp = array_values($valores);
         $pqp[] = $id;
         
@@ -48,6 +50,7 @@
     function formulario_modificar($variables) {
         extract($variables); 
         $password = (isset($password)) ? $password : "";
+        $repassword = (isset($repassword)) ? $repassword : "";
         $admin = $admin == "t"; ?>
         
         <form action="modificar.php" method="post">
@@ -59,7 +62,9 @@
                 <label for="nick">Nick *</label> <br />
                 <input type="text" name="nick" value="<?= $nick ?>"/> <br />
                 <label for="password">Password *</label> <br />
-                <input type="text" name="password" value="<?= $password ?>"/> <br />
+                <input type="password" name="password" value="<?= $password ?>"/> <br />
+                <label for="repassword">Re Password *</label> <br />
+                <input type="password" name="repassword" value="<?= $repassword ?>"/> <br />
                 
                 <label for="admin">Admin</label>
                 <select name="admin">

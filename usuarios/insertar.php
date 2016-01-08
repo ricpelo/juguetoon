@@ -17,7 +17,7 @@
         mostrar_dato_inicial();
         comprobar_usuario_admin();
 
-        $cols = array('numero', 'nick', 'password', 'admin');
+        $cols = array('numero', 'nick', 'password', 'repassword', 'admin');
         $vals = array();
         
         for($i = 0; $i < count($cols); $i++):
@@ -46,6 +46,7 @@
                 comprobar_numero($numero, $error);
                 comprobar_nick($nick, $error);
                 comprobar_password($password, $error);
+                comprobar_repassword($password, $repassword, $error);
                 //comprobar_admin($admin, $error);
                 comprobar_errores($error);
                 

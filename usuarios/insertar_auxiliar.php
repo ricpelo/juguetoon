@@ -19,7 +19,7 @@
     }
     
     function insertar_usuario($valores) {
-        
+        unset($valores['repassword']);
         // El metodo array_keys devuelve de un array asociativo un array con solo las claves
         $columnas = implode(",", array_keys($valores));
 
@@ -49,7 +49,9 @@
                 <label for="nick">Nick *</label> <br />
                 <input type="text" name="nick" value="<?= $nick ?>"/> <br />
                 <label for="password">Password *</label> <br />
-                <input type="text" name="password" value="<?= $password ?>"/> <br />
+                <input type="password" name="password" value="<?= $password ?>"/> <br />
+                <label for="repassword">Re Password *</label> <br />
+                <input type="password" name="repassword" value="<?= $repassword ?>"/> <br />
                 <br> <br>
                 <label for="admin">Administrador</label>
                 <select name="admin">
